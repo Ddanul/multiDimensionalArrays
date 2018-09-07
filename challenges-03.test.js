@@ -377,20 +377,20 @@ describe('Testing challenge 8', () => {
   });
 });
 
-// describe('Testing challenge 9', () => {
-//   test('It should return the number of adjacent bombs', () => {
-//     const minefield =
-//     [ [ null, null, null, null, '*' ],
-//       [ null, null, null, null, '*' ],
-//       [ '*', null, null, null, null ],
-//       [ null, null, null, '*', null ],
-//       [ null, '*', null, null, null ] ];
-//     const expected =
-//       [ [0, 0, 0, 2, 9],
-//         [1, 1, 0, 2, 9],
-//         [9, 1, 1, 2, 2],
-//         [2, 2, 2, 9, 1],
-//         [1, 9, 2, 1, 1] ];
-//     expect(minesweeper(minefield)).toStrictEqual(expected);
-//   });
-// });
+describe('Testing challenge 9', () => {
+  test('It should return the number of adjacent bombs', () => {
+    const minefield =
+    [ [ null, null, null, null, '*' ],
+      [ null, null, null, null, '*' ],
+      [ '*', null, null, null, null ],
+      [ null, null, null, '*', null ],
+      [ null, '*', null, null, null ] ];
+    const expected =
+      [ [0, 0, 0, 2, 9],
+        [1, 1, 0, 2, 9],
+        [9, 1, 1, 2, 2],
+        [2, 2, 2, 9, 1],
+        [1, 9, 2, 1, 1] ];
+    expect(minesweeper(minefield)).toStrictEqual(expected);
+  });
+});
