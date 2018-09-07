@@ -223,8 +223,33 @@ const excel = (str) => {
 // ------------------------------------------------------------------------------------------------
 
 const detectTicTacToeWin = (board) => {
-  // Solution code here...
+  //helper function
+  const helpCheck = (r1, c1, r2, c2, r3, c3) => {
+    let gamePiece = board[r1][c1];
+    if(board[r2][c2] === gamePiece && board[r3][c3] === gamePiece){
+      return true;
+    }else{
+      return false;
+    }
+  };
+
+  //row checks
+  if (helpCheck(0, 0, 0, 1, 0, 2)){return true;};
+  if (helpCheck(1, 0, 1, 1, 1, 2)){return true;};
+  if (helpCheck(2, 0, 2, 1, 2, 2)){return true;};
+  
+  //column checks
+  if (helpCheck(0, 0, 1, 0, 2, 0)){return true;};
+  if (helpCheck(0, 1, 1, 1, 2, 1)){return true;};
+  if (helpCheck(0, 2, 1, 2, 2, 2)){return true;};
+
+  //diagonal checks
+  if (helpCheck(0, 0, 1, 1, 2, 2)){return true;};
+  if (helpCheck(0, 2, 1, 1, 2, 0)){return true;};
+
+  return false;
 };
+
 
 // ------------------------------------------------------------------------------------------------
 // CHALLENGE 9
@@ -341,16 +366,16 @@ describe('Testing challenge 7', () => {
   });
 });
 
-// describe('Testing challenge 8', () => {
-//   test('It should return true if there are three in a row', () => {
-//     expect(detectTicTacToeWin([ ['X', '', 'O'], ['X', 'O', ''], ['X', 'O', 'X'] ])).toStrictEqual(true);
-//     expect(detectTicTacToeWin([ ['O', '', 'X'], ['X', 'O', 'X'], ['X', '', 'O']])).toStrictEqual(true);
-//   });
+describe('Testing challenge 8', () => {
+  test('It should return true if there are three in a row', () => {
+    expect(detectTicTacToeWin([ ['X', '', 'O'], ['X', 'O', ''], ['X', 'O', 'X'] ])).toStrictEqual(true);
+    expect(detectTicTacToeWin([ ['O', '', 'X'], ['X', 'O', 'X'], ['X', '', 'O']])).toStrictEqual(true);
+  });
 
-//   test('It should return false if there are not three in a row', () => {
-//     expect(detectTicTacToeWin([ ['X', '', 'O'], ['O', 'O', ''], ['X', 'O', 'X'] ])).toStrictEqual(false);
-//   });
-// });
+  test('It should return false if there are not three in a row', () => {
+    expect(detectTicTacToeWin([ ['X', '', 'O'], ['O', 'O', ''], ['X', 'O', 'X'] ])).toStrictEqual(false);
+  });
+});
 
 // describe('Testing challenge 9', () => {
 //   test('It should return the number of adjacent bombs', () => {
