@@ -187,7 +187,17 @@ const lowestWeeklyAverage = (weather) => {
 // ------------------------------------------------------------------------------------------------
 
 const excel = (str) => {
-  // Solution code here...
+  const sumValues = [];
+  let splitArr = str.split('\n');
+  splitArr.forEach( (row) => {
+    let rowSum = 0;
+    let splitRow = row.split(',');
+    splitRow.forEach( (col) => {
+      rowSum += parseInt(col);
+    });
+    sumValues.push(rowSum);
+  });
+  return sumValues;
 };
 
 // ------------------------------------------------------------------------------------------------
@@ -321,15 +331,15 @@ describe('Testing challenge 6', () => {
   });
 });
 
-// describe('Testing challenge 7', () => {
-//   test('It should return the total count for each row', () => {
-//     let result = excel('1,1,1\n4,4,4\n9,9,9');
-//     expect(result.length).toStrictEqual(3);
-//     expect(result[0]).toStrictEqual(3);
-//     expect(result[1]).toStrictEqual(12);
-//     expect(result[2]).toStrictEqual(27);
-//   });
-// });
+describe('Testing challenge 7', () => {
+  test('It should return the total count for each row', () => {
+    let result = excel('1,1,1\n4,4,4\n9,9,9');
+    expect(result.length).toStrictEqual(3);
+    expect(result[0]).toStrictEqual(3);
+    expect(result[1]).toStrictEqual(12);
+    expect(result[2]).toStrictEqual(27);
+  });
+});
 
 // describe('Testing challenge 8', () => {
 //   test('It should return true if there are three in a row', () => {
