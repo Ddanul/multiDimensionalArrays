@@ -142,7 +142,23 @@ let lowestWeeklyTemperatureData = [
 ];
 
 const lowestWeeklyAverage = (weather) => {
-  // Solution code here...
+  const weeklyAvgs = [];
+  weather.forEach( (week) => {
+    let weeklySum = 0;
+    week.forEach( (day) => {
+      weeklySum += day;
+    });
+    weeklyAvgs.push(weeklySum/7);
+  });
+  let min = Infinity;
+  for(let avg of weeklyAvgs){
+    if(avg<min){
+      min = avg;
+    }else{
+      continue;
+    }
+  }
+  return min;
 };
 
 // ------------------------------------------------------------------------------------------------
@@ -298,12 +314,12 @@ describe('Testing challenge 5', () => {
   });
 });
 
-// describe('Testing challenge 6', () => {
-//   test('It should return the lowest weekly average temperature within the data set', () => {
-//     expect(lowestWeeklyAverage(weeklyTemperatures)).toStrictEqual(57);
-//     expect(lowestWeeklyAverage(lowestWeeklyTemperatureData)).toStrictEqual(46);
-//   });
-// });
+describe('Testing challenge 6', () => {
+  test('It should return the lowest weekly average temperature within the data set', () => {
+    expect(lowestWeeklyAverage(weeklyTemperatures)).toStrictEqual(57);
+    expect(lowestWeeklyAverage(lowestWeeklyTemperatureData)).toStrictEqual(46);
+  });
+});
 
 // describe('Testing challenge 7', () => {
 //   test('It should return the total count for each row', () => {
