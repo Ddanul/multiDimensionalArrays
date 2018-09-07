@@ -33,7 +33,7 @@ const errands = [
 ];
 
 const howManyTreats = (arr) => {
-  // Solution code here...
+  return arr[2].items[1].quantity;
 };
 
 // ------------------------------------------------------------------------------------------------
@@ -221,14 +221,14 @@ describe('Testing challenge 1', () => {
   })
 });
 
-// describe('Testing challenge 2', () => {
-//   test('It should return the number 24', () => {
-//     expect(howManyTreats(errands)).toStrictEqual(24);
-//   });
-//   test('It should also work for other arrays of objects', () => {
-//     expect(howManyTreats([0,0,{items: [0, {quantity: 7}]}])).toStrictEqual(7);
-//   })
-// });
+describe('Testing challenge 2', () => {
+  test('It should return the number 24', () => {
+    expect(howManyTreats(errands)).toStrictEqual(24);
+  });
+  test('It should also work for other arrays of objects', () => {
+    expect(howManyTreats([0,0,{items: [0, {quantity: 7}]}])).toStrictEqual(7);
+  })
+});
 
 // describe('Testing challenge 3', () => {
 //   const battleshipData = [
