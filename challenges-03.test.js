@@ -7,7 +7,7 @@
 // Hint: refresh on how to access elements at a specific index in an array.
 // ------------------------------------------------------------------------------------------------
 
-const nestedArray = [ [ [1, 2, 3], [4, 5, 6] ], [ [7, 8, 9], [10, 11, 12] ], [ [13, 14, 15], [16, 17, 18] ] ];
+const nestedArray = [[[1, 2, 3], [4, 5, 6]], [[7, 8, 9], [10, 11, 12]], [[13, 14, 15], [16, 17, 18]]];
 
 const findFourteen = (array) => {
   return array[2][0][1];
@@ -21,14 +21,17 @@ const findFourteen = (array) => {
 // ------------------------------------------------------------------------------------------------
 
 const errands = [
-  { store: 'Grocery store',
-    items: [ { name: 'Eggs', quantity: 12 }, { name: 'Milk', quantity: 1 }, { name: 'Apples', quantity: 3 }]
+  {
+    store: 'Grocery store',
+    items: [{ name: 'Eggs', quantity: 12 }, { name: 'Milk', quantity: 1 }, { name: 'Apples', quantity: 3 }]
   },
-  { store: 'Drug store',
-    items: [ { name: 'Toothpaste', quantity: 1 }, { name: 'Toothbrush', quantity: 3 }, { name: 'Mouthwash',quantity: 1 } ]
+  {
+    store: 'Drug store',
+    items: [{ name: 'Toothpaste', quantity: 1 }, { name: 'Toothbrush', quantity: 3 }, { name: 'Mouthwash', quantity: 1 }]
   },
-  { store: 'Pet store',
-    items: [ { name: 'Cans of food', quantity: 8 }, { name: 'Treats', quantity: 24 }, { name: 'Leash', quantity: 1 } ]
+  {
+    store: 'Pet store',
+    items: [{ name: 'Cans of food', quantity: 8 }, { name: 'Treats', quantity: 24 }, { name: 'Leash', quantity: 1 }]
   }
 ];
 
@@ -56,10 +59,10 @@ const howManyTreats = (arr) => {
 
 const battleship = (board, row, col) => {
   let target = board[row][col];
-  if(target === '#'){
-      return 'hit';
+  if (target === '#') {
+    return 'hit';
   } else {
-      return 'miss';
+    return 'miss';
   }
 };
 
@@ -74,7 +77,19 @@ const battleship = (board, row, col) => {
 // ------------------------------------------------------------------------------------------------
 
 const calculateProduct = (numbers) => {
-  // Solution code here...
+  let newArr = [];
+  numbers.forEach((row, rowIdx) => {
+    let product = 1;
+    row.forEach((num, numIdx) => {
+      product *= num;
+    });
+    newArr.push(product);
+  });
+  let finalProduct = 1;
+  newArr.forEach( (val) => {
+    finalProduct *= val;
+  });
+  return finalProduct;
 };
 
 // ------------------------------------------------------------------------------------------------
@@ -222,7 +237,7 @@ describe('Testing challenge 1', () => {
     expect(findFourteen(nestedArray)).toStrictEqual(14);
   });
   test('It should also work for other input arrays', () => {
-    expect(findFourteen([[], [], [[0,1,2]]])).toStrictEqual(1);
+    expect(findFourteen([[], [], [[0, 1, 2]]])).toStrictEqual(1);
   })
 });
 
@@ -231,7 +246,7 @@ describe('Testing challenge 2', () => {
     expect(howManyTreats(errands)).toStrictEqual(24);
   });
   test('It should also work for other arrays of objects', () => {
-    expect(howManyTreats([0,0,{items: [0, {quantity: 7}]}])).toStrictEqual(7);
+    expect(howManyTreats([0, 0, { items: [0, { quantity: 7 }] }])).toStrictEqual(7);
   })
 });
 
@@ -254,18 +269,18 @@ describe('Testing challenge 3', () => {
   });
 });
 
-// describe('Testing challenge 4', () => {
-//   test('It should multiply all the numbers together', () => {
-//     expect(calculateProduct([[1,2], [3,4], [5,6]])).toStrictEqual(720);
-//   });
+describe('Testing challenge 4', () => {
+  test('It should multiply all the numbers together', () => {
+    expect(calculateProduct([[1, 2], [3, 4], [5, 6]])).toStrictEqual(720);
+  });
 
-//   test('It should return zero if there are any zeroes in the data', () => {
-//     expect(calculateProduct([[2, 3, 4, 6, 0], [4, 3, 7], [2, 4, 6]])).toStrictEqual(0);
-//   });
-//   test('It should work even if some of the arrays contain no numbers', () => {
-//     expect(calculateProduct([[1,2], [], [3,4,5]])).toStrictEqual(120);
-//   });
-// });
+  test('It should return zero if there are any zeroes in the data', () => {
+    expect(calculateProduct([[2, 3, 4, 6, 0], [4, 3, 7], [2, 4, 6]])).toStrictEqual(0);
+  });
+  test('It should work even if some of the arrays contain no numbers', () => {
+    expect(calculateProduct([[1, 2], [], [3, 4, 5]])).toStrictEqual(120);
+  });
+});
 
 // describe('Testing challenge 5', () => {
 //   test('It should calculate and return the average temperature of the data set', () => {
